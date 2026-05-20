@@ -1,6 +1,11 @@
 <script setup>
 import article from "./article.json"
 
+const tags = {
+  best: 'Лучшая цена',
+  fast: 'Самый быстрый',
+
+}
 const expiringDateObj = new Date(article.expiring_date)
 const expiringDate = expiringDateObj.getDate() < 10 ? '0' + expiringDateObj.getDate() : expiringDateObj.getDate()
 const expiringMonth = expiringDateObj.getMonth() < 10 ? '0' + expiringDateObj.getMonth() : expiringDateObj.getMonth()
@@ -10,8 +15,8 @@ const expiringMonth = expiringDateObj.getMonth() < 10 ? '0' + expiringDateObj.ge
   <article>
     <div>
       <div class="tags">
-        <div class="tag best">Лучшая цена</div>
-        <div class="tag fast">Самый быстрый</div>
+
+        <div class="tag" v-for="tag in article.tags" :class="tag">{{ tags[tag] }}</div>
       </div>
 
       <h1>{{article.title}}</h1>
